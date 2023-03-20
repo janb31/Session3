@@ -10,8 +10,6 @@ namespace UnitTestMasters_Session3Assignment
 
         public class EmployeeFactory
         {
-
-
             public virtual Employee CreateEmployee(string firstName,
             string lastName,
             string? company = null,
@@ -46,5 +44,32 @@ namespace UnitTestMasters_Session3Assignment
                 return new InternalEmployee(firstName, lastName, 0, 2500, false, 1);
             }
         }
+
+        [Fact]
+        public void Create_An_External_Employee_WHen_FullName_Is_NotNull()
+        {
+            //Arrange
+            EmployeeFactory employeeFactory = new EmployeeFactory();
+
+            //Act
+            var sut = employeeFactory.CreateEmployee("Jan Mark", "Bernales", "Company 0", true);
+
+            //Assert
+            Assert.NotNull(sut);
+        }
+
+        [Fact]
+        public void Create_An_Internal_Employee_WHen_FullName_Is_NotNull()
+        {
+            //Arrange
+            EmployeeFactory employeeFactory = new EmployeeFactory();
+
+            //Act
+            var sut = employeeFactory.CreateEmployee("Jan Mark", "Bernales", null, false);
+
+            //Assert
+            Assert.NotNull(sut);
+        }
+
     }
 }
